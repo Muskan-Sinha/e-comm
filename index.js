@@ -3,6 +3,8 @@ import dotenv from "dotenv"
 import { connectToMongoDB } from "./connect.js"
 import userRouter from "./router/user.js"
 import productRouter from "./router/product.js"
+import wishlistRouter from "./router/wishlist.js"
+import cartRouter from "./router/cart.js"
 import cookieParser from 'cookie-parser'
 
     dotenv.config({
@@ -17,6 +19,8 @@ import cookieParser from 'cookie-parser'
     app.use(express.json())
     app.use("/api/user", userRouter)
     app.use("/api/products", productRouter)
+    app.use("/api/wishlist", wishlistRouter)
+    app.use("/api/cart", cartRouter)
 
     app.listen(process.env.PORT||8000, ()=>
     console.log("Server started"))

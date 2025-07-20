@@ -1,5 +1,5 @@
 import { createToken } from "./signup.js"
-import { USER } from "../../Model/user.js"
+import { USER } from "../../model/user.js"
 import bcrypt from "bcryptjs"
 export const signin = async (req,res) => {
     try {

@@ -1,15 +1,16 @@
-import { PRODUCT } from "../../Model/product.js";
+import { PRODUCT } from "../../model/product.js";
 
-export const createProduct = async (req,res) => {
-    try{
-        const {name, desc} = req.body;
+export const createProduct = async (req, res) => {
+    try {
+        const { name, desc, marketPrice, sellPrice, discount, stock, category } = req.body;
         const userId = req.user._id
+        const images = req.files.map((file) => file.path);
 
-        if(!name){
-            return res.status(400).json({message: "Heading is required"})
+        if (!name) {
+            return res.status(400).json({ message: "Heading is required" })
         }
         const newProduct = new PRODUCT({
-            userId, name, desc
+            userId, name, desc, marketPrice, sellPrice, discount, stock, category, images
         })
 
         await newProduct.save()
@@ -18,7 +19,7 @@ export const createProduct = async (req,res) => {
             product: newProduct
         })
 
-    } catch(error){
-        res.status(500).json({message: "fail", error})
+    } catch (error) {
+        res.status(500).json({ message: "fail", error })
     }
 }

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const wishlistSchema = new mongoose.Schema({
+const cartSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "user",
@@ -11,12 +11,11 @@ const wishlistSchema = new mongoose.Schema({
         ref: "product",
         required: true
     },
-    createdAt: {
-        type: Date,
-        default: Date.now
+    quantity: {
+        type: Number
     }
 })
 
-const WISHLIST = mongoose.model("wishlist", wishlistSchema)
+const CART = mongoose.model("cart", cartSchema)
 
-export {WISHLIST}
+export {CART}

@@ -1,12 +1,13 @@
-import { PRODUCT } from "../../model/product.js"
+// import { PRODUCT } from "../../model/product.js"
+import { WISHLIST } from "../../model/wishlist.js";
 
-export const deleteProduct = async (req,res) => {
+export const deleteFromWL = async (req,res) => {
     try{
         const productId = req.params.id
         const userId = req.user._id
         console.log(productId);
         
-        const prod = await PRODUCT.findOneAndDelete({_id: productId, userId})
+        const prod = await WISHLIST.findOneAndDelete({productId: productId, userId})
         console.log(prod);
         
 

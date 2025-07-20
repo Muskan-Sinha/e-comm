@@ -1,4 +1,4 @@
-import { PRODUCT } from "../../Model/product.js"
+import { PRODUCT } from "../../model/product.js"
 
 export const getProductByUserID = async (req,res) => {
     try {
@@ -6,7 +6,7 @@ export const getProductByUserID = async (req,res) => {
 
         const prods = await PRODUCT.find({userId: uId})
 
-        if(prods.length() === 0) 
+        if(prods.length=== 0) 
             res.status(404).json({message: "Not found any Products"})
 
         res.status(200).json({message: "success", prods})
@@ -16,6 +16,21 @@ export const getProductByUserID = async (req,res) => {
     }
 }
 
+export const getProductByID = async (req,res) => {
+    try {
+        const productId = req.params.id
+
+        const prods = await PRODUCT.findOne({_id: productId})
+
+        if(prods.length=== 0) 
+            res.status(404).json({message: "Not found any Products"})
+
+        res.status(200).json({message: "success", prods})
+
+    } catch(error) {
+        return res.status(500).json({message : "failed", error})
+    }
+}
 
 export const getAll = async (req,res) => {
     try {
