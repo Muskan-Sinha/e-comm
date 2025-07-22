@@ -13,7 +13,7 @@ export const getCartByUserID = async (req, res) => {
             },
              {
                 $lookup: {
-                    from: "products7",
+                    from: "products",
                     localField: "productId",
                     foreignField: "_id",
                     as: "prod"

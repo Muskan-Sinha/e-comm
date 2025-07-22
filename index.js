@@ -6,6 +6,9 @@ import productRouter from "./router/product.js"
 import wishlistRouter from "./router/wishlist.js"
 import cartRouter from "./router/cart.js"
 import cookieParser from 'cookie-parser'
+import cors from "cors";
+
+
 
     dotenv.config({
         path: './.env'
@@ -17,6 +20,10 @@ import cookieParser from 'cookie-parser'
     .then(()=>console.log("connected"))
 
     app.use(express.json())
+    app.use(cors({
+    origin: "http://localhost:5173", 
+    credentials: true
+}));
     app.use("/api/user", userRouter)
     app.use("/api/products", productRouter)
     app.use("/api/wishlist", wishlistRouter)
