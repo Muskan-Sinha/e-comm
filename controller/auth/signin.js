@@ -9,7 +9,6 @@ export const signin = async (req,res) => {
             return res.status(404).json({message: "User not found"})
         }
 
-
         const checkPassword = await bcrypt.compare(password, ifUserExists.password)
         if (!checkPassword) {
             return res.status(400).json({message:"Invalid credentials"})
@@ -22,7 +21,15 @@ export const signin = async (req,res) => {
             sameSite: "none",
         })
 
-        res.status(200).json(ifUserExists)
+        res.status(200).json({
+  user: {
+    id: ifUserExists._id,
+    name: ifUserExists.name,
+    email: ifUserExists.email,
+  },
+  token
+});
+
         
     }
     catch (error) {

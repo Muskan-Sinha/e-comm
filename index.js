@@ -7,8 +7,7 @@ import wishlistRouter from "./router/wishlist.js"
 import cartRouter from "./router/cart.js"
 import cookieParser from 'cookie-parser'
 import cors from "cors";
-
-
+import orderRoutes from "./router/order.js";
 
     dotenv.config({
         path: './.env'
@@ -28,6 +27,7 @@ import cors from "cors";
     app.use("/api/products", productRouter)
     app.use("/api/wishlist", wishlistRouter)
     app.use("/api/cart", cartRouter)
+    app.use("/api/orders", orderRoutes);
 
     app.listen(process.env.PORT||8000, ()=>
     console.log("Server started"))
